@@ -4,10 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie Rating</title>
+    <link rel="stylesheet" href="movie-rating.css">
 </head>
 
 <body>
-
+    <form>
+        <input type="text" id="title" placeholder="Movie Title">
+        <input type="number" min="0" max="10" id="rating" placeholder="Movie Rating">
+        <button id="add">Submit</button>
+    </form>
+    <section>
+        <div id="results">
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $("#add").on("click", function (e) {
+                e.preventDefault();
+                let title = $("#title").val();
+                let rating = $("#rating").val();
+                $("#results").append($(`<p>Title: ${title} Rating: ${rating}</p>`).append($("<button id='remove'> X </button>")))
+            });
+            $("#results").on("click", '#remove', function (evt) {
+                $(this).parent().remove();
+            });
+        })
+    </script>
 </body>
 
 </html>
